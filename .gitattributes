@@ -1,0 +1,122 @@
+###############################################################################
+# Set default behavior for command prompt diff.
+#
+# This is need for earlier builds of msysgit that does not have it on by
+# default for csharp files.
+# Note: This is only used by command line
+###############################################################################
+#*.cs     diff=csharp
+
+###############################################################################
+# diff behavior for common document formats
+# 
+# Convert binary document formats to text before diffing them. This feature
+# is only available from the command line. Turn it on by uncommenting the 
+# entries below.
+###############################################################################
+#*.doc   diff=astextplain
+#*.DOC   diff=astextplain
+#*.docx  diff=astextplain
+#*.DOCX  diff=astextplain
+#*.dot   diff=astextplain
+#*.DOT   diff=astextplain
+#*.pdf   diff=astextplain
+#*.PDF   diff=astextplain
+#*.rtf   diff=astextplain
+#*.RTF   diff=astextplain
+
+* 			text=auto
+.txt 		text eol=crlf
+
+# 将 Shell 脚本文件标记为文本，并使用 LF 作为行结束符
+*.sh 		text eol=lf
+
+# 将 C、C++ 和 C# 源文件和头文件标记为文本，并使用 LF 作为行结束符
+*.[cC] 		text eol=crlf
+*.[hH] 		text eol=crlf
+*.cpp 		text eol=crlf
+*.hpp 		text eol=crlf
+*.cxx 		text eol=crlf
+*.hxx 		text eol=crlf
+*.cc 		text eol=crlf
+*.cs		text eol=crlf
+
+# 将 JavaScript 文件及相关前端文件标记为文本，并使用 LF 作为行结束符
+*.js 		text eol=crlf
+*.jsx 		text eol=crlf
+*.tsx 		text eol=crlf
+*.html 		text eol=crlf
+*.css 		text eol=crlf
+*.scss 		text eol=crlf
+*.sass 		text eol=crlf
+*.json 		text eol=crlf
+*.vue 		text eol=crlf
+*.svelte 	text eol=crlf
+*.xml 		text eol=crlf
+*.xaml 		text eol=crlf
+
+# Blazor 相关文件
+*.razor text eol=crlf
+*.wasm binary
+
+# 将静态库 (.lib, .a) 和动态库 (.dll, .so, .dylib) 文件标记为二进制
+*.lib 		binary
+*.a 		binary
+*.dll 		binary
+*.so 		binary
+*.dylib 	binary
+*.exe 		binary
+*.o 		binary
+*.out 		binary
+*.pdb 		binary
+
+# 音视频文件
+*.ts 		binary
+*.mp4		binary
+*.mkv 		binary
+*.mp3 		binary
+*.flac 		binary
+
+# 图片
+*.jpg   	binary
+*.png   	binary
+*.gif   	binary
+
+# 压缩包
+*.zip 		binary
+*.tar.* 	binary
+*.bz2 		binary
+*.gz 		binary
+*.rar 		binary
+*.7z 		binary
+*.xz 		binary
+
+# 字体文件
+*.ttf 		binary
+*.woff 		binary
+*.woff2 	binary
+*.eot 		binary
+*.otf 		binary
+
+###############################################################################
+# Set the merge driver for project and solution files
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (Merging from VS is not affected by the settings below, in VS
+# the diff markers are never inserted). Diff markers may cause the following 
+# file extensions to fail to load in VS. An alternative would be to treat
+# these files as binary and thus will always conflict and require user
+# intervention with every merge. To do so, just uncomment the entries below
+###############################################################################
+*.sln       	text eol=crlf
+*.csproj    	text eol=crlf
+*.vbproj    	text eol=crlf
+*.vcxproj   	text eol=crlf
+*.vcproj    	text eol=crlf
+*.dbproj    	text eol=crlf
+*.fsproj    	text eol=crlf
+*.lsproj    	text eol=crlf
+*.wixproj   	text eol=crlf
+*.modelproj 	text eol=crlf
+*.sqlproj   	text eol=crlf
+*.wwaproj   	text eol=crlf

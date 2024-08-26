@@ -1,0 +1,61 @@
+Language: Cpp
+BasedOnStyle: Microsoft
+
+# 列数限制
+ColumnLimit: 0
+
+# 缩进 case 标签
+IndentCaseLabels: false
+# 缩进 case 块
+IndentCaseBlocks: true
+
+# 命名空间缩进
+NamespaceIndentation: All
+
+# 访问修饰符缩进
+IndentAccessModifiers: false
+AccessModifierOffset: -4
+
+# 继承链断行
+BreakInheritanceList: AfterColon
+
+# 使用空行分隔块
+SeparateDefinitionBlocks: Always
+
+# 从不将 lambda 表达式变成单行
+AllowShortLambdasOnASingleLine: None
+
+# 对头文件进行排序
+SortIncludes: CaseInsensitive
+
+PackConstructorInitializers: Never
+IndentPPDirectives: None
+
+# 指针右对齐
+PointerAlignment: Right
+# 引用右对齐
+ReferenceAlignment: Right
+
+# const 限定符 右对齐
+QualifierAlignment: Right
+
+# 访问修饰符后空行
+EmptyLineAfterAccessModifier: Leave
+
+BraceWrapping:
+ IndentBraces: false
+ AfterClass: true
+ AfterUnion: true
+ BeforeLambdaBody: true
+ AfterControlStatement: Always
+ AfterEnum: true
+ AfterFunction: true
+ AfterNamespace: true
+ AfterStruct: true
+ AfterExternBlock: true
+ BeforeCatch: true
+ BeforeElse: true
+ AfterCaseLabel: true
+ SplitEmptyFunction: true
+ SplitEmptyRecord: true
+ SplitEmptyNamespace: true

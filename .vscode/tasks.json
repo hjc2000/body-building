@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "ninja-install",
+			"type": "shell",
+			"command": "ninja",
+			"args": [
+				"install"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}/jc_build"
+			},
+			"problemMatcher": []
+		}
+	]
+}

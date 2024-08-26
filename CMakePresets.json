@@ -1,0 +1,56 @@
+﻿{
+	"version": 3,
+	"configurePresets": [
+		{
+			"name": "windows-base",
+			"hidden": true,
+			"generator": "Ninja",
+			"binaryDir": "${sourceDir}/jc_build",
+			"cacheVariables": {
+				"cpp_lib_build_scripts_path": "$env{cpp_lib_build_scripts_path}",
+				"platform": "msys",
+				"BUILD_SHARED_LIBS": true,
+				"CMAKE_C_COMPILER": "C:/msys64/ucrt64/bin/gcc.exe",
+				"CMAKE_CXX_COMPILER": "C:/msys64/ucrt64/bin/g++.exe",
+				"CMAKE_C_FLAGS": "-Wall -Wextra -Wno-unused-parameter",
+				"CMAKE_CXX_FLAGS": "-Wall -Wextra -Wno-unused-parameter",
+				"CMAKE_POSITION_INDEPENDENT_CODE": true,
+				"CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS": true
+			},
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			},
+			"vendor": {
+				"microsoft.com/VisualStudioSettings/CMake/1.0": {
+					"intelliSenseMode": "linux-gcc-x64"
+				}
+			}
+		},
+		{
+			"name": "msys-debug",
+			"displayName": "msys-debug",
+			"inherits": "windows-base",
+			"architecture": {
+				"value": "x64",
+				"strategy": "external"
+			},
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+		{
+			"name": "msys-release",
+			"displayName": "msys-release",
+			"inherits": "windows-base",
+			"architecture": {
+				"value": "x64",
+				"strategy": "external"
+			},
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		}
+	]
+}
