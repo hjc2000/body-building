@@ -249,27 +249,262 @@ void ModeSelector::CreateBodyBuildingModeExecutable()
         }
     case Option_BodyBuildingMode::ConstantSpeedMode1:
         {
-            _body_building_executable = std::shared_ptr<base::IExecutable>{new ConstantSpeedMode{0, _cmd}};
+            class Getter :
+                public IConstantSpeedMode_InfomationGetter
+            {
+            public:
+                /// @brief 限制转速时让转矩增长的比例。越大转矩随着速度变大增长越快。
+                /// @return
+                double Option_TorqueGrowRatio() override
+                {
+                    return SRV_PARA(1, 39) / 1000;
+                }
+
+                /// @brief 转速限制值。超过后转矩会快速增大。
+                /// @return
+                double Option_SpeedLimit() override
+                {
+                    return SRV_PARA(1, 21) / 100;
+                }
+
+                /// @brief 恒速模式的收线转矩。
+                /// @return
+                int Option_WindingTorque() override
+                {
+                    return SRV_PARA(2, 18);
+                }
+
+                /// @brief 恒速模式下的收线转速。
+                /// @return
+                double Option_WindingSpeed_rpm() override
+                {
+                    return SRV_PARA(1, 10) / 100;
+                }
+
+                /// @brief ChX 滤波器的前向通道增益
+                /// @return
+                double Option_ChXFilterKError() override
+                {
+                    return SRV_PARA(1, 20);
+                }
+            };
+
+            _body_building_executable = std::shared_ptr<base::IExecutable>{
+                new ConstantSpeedMode{
+                    0,
+                    _cmd,
+                    std::shared_ptr<Getter>{new Getter{}},
+                },
+            };
+
             break;
         }
     case Option_BodyBuildingMode::ConstantSpeedMode2:
         {
-            _body_building_executable = std::shared_ptr<base::IExecutable>{new ConstantSpeedMode{1, _cmd}};
+            class Getter :
+                public IConstantSpeedMode_InfomationGetter
+            {
+            public:
+                /// @brief 限制转速时让转矩增长的比例。越大转矩随着速度变大增长越快。
+                /// @return
+                double Option_TorqueGrowRatio() override
+                {
+                    return 1;
+                }
+
+                /// @brief 转速限制值。超过后转矩会快速增大。
+                /// @return
+                double Option_SpeedLimit() override
+                {
+                    return 1400;
+                }
+
+                /// @brief 恒速模式的收线转矩。
+                /// @return
+                int Option_WindingTorque() override
+                {
+                    return 13;
+                }
+
+                /// @brief 恒速模式下的收线转速。
+                /// @return
+                double Option_WindingSpeed_rpm() override
+                {
+                    return 600;
+                }
+
+                /// @brief ChX 滤波器的前向通道增益
+                /// @return
+                double Option_ChXFilterKError() override
+                {
+                    return 200;
+                }
+            };
+
+            _body_building_executable = std::shared_ptr<base::IExecutable>{
+                new ConstantSpeedMode{
+                    1,
+                    _cmd,
+                    std::shared_ptr<Getter>{new Getter{}},
+                },
+            };
+
             break;
         }
     case Option_BodyBuildingMode::ConstantSpeedMode3:
         {
-            _body_building_executable = std::shared_ptr<base::IExecutable>{new ConstantSpeedMode{2, _cmd}};
+            class Getter :
+                public IConstantSpeedMode_InfomationGetter
+            {
+            public:
+                /// @brief 限制转速时让转矩增长的比例。越大转矩随着速度变大增长越快。
+                /// @return
+                double Option_TorqueGrowRatio() override
+                {
+                    return 1.45;
+                }
+
+                /// @brief 转速限制值。超过后转矩会快速增大。
+                /// @return
+                double Option_SpeedLimit() override
+                {
+                    return 1100;
+                }
+
+                /// @brief 恒速模式的收线转矩。
+                /// @return
+                int Option_WindingTorque() override
+                {
+                    return 30;
+                }
+
+                /// @brief 恒速模式下的收线转速。
+                /// @return
+                double Option_WindingSpeed_rpm() override
+                {
+                    return 400;
+                }
+
+                /// @brief ChX 滤波器的前向通道增益
+                /// @return
+                double Option_ChXFilterKError() override
+                {
+                    return 200;
+                }
+            };
+
+            _body_building_executable = std::shared_ptr<base::IExecutable>{
+                new ConstantSpeedMode{
+                    2,
+                    _cmd,
+                    std::shared_ptr<Getter>{new Getter{}},
+                },
+            };
+
             break;
         }
     case Option_BodyBuildingMode::ConstantSpeedMode4:
         {
-            _body_building_executable = std::shared_ptr<base::IExecutable>{new ConstantSpeedMode{3, _cmd}};
+            class Getter :
+                public IConstantSpeedMode_InfomationGetter
+            {
+            public:
+                /// @brief 限制转速时让转矩增长的比例。越大转矩随着速度变大增长越快。
+                /// @return
+                double Option_TorqueGrowRatio() override
+                {
+                    return 2;
+                }
+
+                /// @brief 转速限制值。超过后转矩会快速增大。
+                /// @return
+                double Option_SpeedLimit() override
+                {
+                    return 1;
+                }
+
+                /// @brief 恒速模式的收线转矩。
+                /// @return
+                int Option_WindingTorque() override
+                {
+                    return 45;
+                }
+
+                /// @brief 恒速模式下的收线转速。
+                /// @return
+                double Option_WindingSpeed_rpm() override
+                {
+                    return 300;
+                }
+
+                /// @brief ChX 滤波器的前向通道增益
+                /// @return
+                double Option_ChXFilterKError() override
+                {
+                    return 1000;
+                }
+            };
+
+            _body_building_executable = std::shared_ptr<base::IExecutable>{
+                new ConstantSpeedMode{
+                    3,
+                    _cmd,
+                    std::shared_ptr<Getter>{new Getter{}},
+                },
+            };
+
             break;
         }
     case Option_BodyBuildingMode::ConstantSpeedMode5:
         {
-            _body_building_executable = std::shared_ptr<base::IExecutable>{new ConstantSpeedMode{4, _cmd}};
+            class Getter :
+                public IConstantSpeedMode_InfomationGetter
+            {
+            public:
+                /// @brief 限制转速时让转矩增长的比例。越大转矩随着速度变大增长越快。
+                /// @return
+                double Option_TorqueGrowRatio() override
+                {
+                    return 0.6;
+                }
+
+                /// @brief 转速限制值。超过后转矩会快速增大。
+                /// @return
+                double Option_SpeedLimit() override
+                {
+                    return 1800;
+                }
+
+                /// @brief 恒速模式的收线转矩。
+                /// @return
+                int Option_WindingTorque() override
+                {
+                    return 6;
+                }
+
+                /// @brief 恒速模式下的收线转速。
+                /// @return
+                double Option_WindingSpeed_rpm() override
+                {
+                    return 800;
+                }
+
+                /// @brief ChX 滤波器的前向通道增益
+                /// @return
+                double Option_ChXFilterKError() override
+                {
+                    return 500;
+                }
+            };
+
+            _body_building_executable = std::shared_ptr<base::IExecutable>{
+                new ConstantSpeedMode{
+                    4,
+                    _cmd,
+                    std::shared_ptr<Getter>{new Getter{}},
+                },
+            };
+
             break;
         }
     case Option_BodyBuildingMode::BurnOutMode:
