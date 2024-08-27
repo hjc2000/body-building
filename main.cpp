@@ -1,16 +1,47 @@
 #include <body-building/body-building-mode/SpringMode.h>
+#include <cstddef>
 #include <iostream>
+#include <new>
 #include <stdexcept>
 
 using namespace std;
+
+void operator delete(void *ptr) noexcept
+{
+    std::cout << "delete" << ptr << std::endl;
+}
+
+void operator delete[](void *ptr) noexcept
+{
+    std::cout << "delete" << ptr << std::endl;
+}
+
+void operator delete(void *ptr, std::nothrow_t const &) noexcept
+{
+    std::cout << "delete" << ptr << std::endl;
+}
+
+void operator delete[](void *ptr, std::nothrow_t const &) noexcept
+{
+    std::cout << "delete" << ptr << std::endl;
+}
+
+void operator delete(void *ptr, size_t) noexcept
+{
+    std::cout << "delete" << ptr << std::endl;
+}
+
+void operator delete[](void *ptr, size_t) noexcept
+{
+    std::cout << "delete" << ptr << std::endl;
+}
 
 class Test
 {
 public:
     Test()
     {
-        std::cout << this << std::endl;
-        throw std::runtime_error{"构造函数中抛出异常"};
+        throw std::runtime_error{"throw"};
     }
 
     ~Test()
