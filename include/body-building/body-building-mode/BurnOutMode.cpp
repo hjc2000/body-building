@@ -1,6 +1,6 @@
 #include "BurnOutMode.h"
 
-void BurnOutMode::Prepare()
+void body::BurnOutMode::Prepare()
 {
     _tension_linear_interpolator->SetEndValue(_infos->Option_Tension_kg());
     if (_pull_times_detecter->UnwindingTimesChanged())
@@ -31,7 +31,7 @@ void BurnOutMode::Prepare()
     }
 }
 
-void BurnOutMode::Work()
+void body::BurnOutMode::Work()
 {
     if (_pull_times_detecter->UnwindingTimesChanged())
     {
@@ -86,8 +86,8 @@ void BurnOutMode::Work()
     }
 }
 
-BurnOutMode::BurnOutMode(std::shared_ptr<Cmd> cmd,
-                         std::shared_ptr<IBurnOutMode_InfomationGetter> infos)
+body::BurnOutMode::BurnOutMode(std::shared_ptr<Cmd> cmd,
+                               std::shared_ptr<IBurnOutMode_InfomationGetter> infos)
 {
     _cmd = cmd;
     _infos = infos;
@@ -105,7 +105,7 @@ BurnOutMode::BurnOutMode(std::shared_ptr<Cmd> cmd,
     };
 }
 
-void BurnOutMode::Execute()
+void body::BurnOutMode::Execute()
 {
     _cmd->SetSpeed(_infos->Option_WindingSpeed_rpm());
     if (_infos->Servo_FeedbackSpeed() > 10)

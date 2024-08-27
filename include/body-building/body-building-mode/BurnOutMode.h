@@ -8,47 +8,51 @@
 #include <body-building/io/lua_api.h>
 #include <memory>
 
-class IBurnOutMode_InfomationGetter
+namespace body
 {
-public:
-    virtual double Option_Tension_kg() = 0;
-    virtual double Option_MaxTension_kg() = 0;
-    virtual double Option_TorqueRatio() = 0;
-    virtual double Option_WindingSpeed_rpm() = 0;
-
-    virtual double Servo_FeedbackSpeed() = 0;
-    virtual int Servo_FeedbackPosition() = 0;
-
-    double RleasedLengthOfLine()
+    class IBurnOutMode_InfomationGetter
     {
-        return Servo_FeedbackPosition() * 3.7 * 2 * 3.14 / 12000;
-    }
-};
+    public:
+        virtual double Option_Tension_kg() = 0;
+        virtual double Option_MaxTension_kg() = 0;
+        virtual double Option_TorqueRatio() = 0;
+        virtual double Option_WindingSpeed_rpm() = 0;
 
-class BurnOutMode :
-    public base::IExecutable
-{
-private:
-    bool _is_preparing = true;
-    int _unwinding_tick = 0;
-    double _reference_power = 0;
-    double _tension = 0;
+        virtual double Servo_FeedbackSpeed() = 0;
+        virtual int Servo_FeedbackPosition() = 0;
 
-    double _starting_point_line_length = 0;
-    double _end_point_line_length = 0;
-    double _reference_line_length = 0;
+        double RleasedLengthOfLine()
+        {
+            return Servo_FeedbackPosition() * 3.7 * 2 * 3.14 / 12000;
+        }
+    };
 
-    std::shared_ptr<Cmd> _cmd;
-    std::shared_ptr<IBurnOutMode_InfomationGetter> _infos;
-    std::shared_ptr<PullTimesDetector> _pull_times_detecter{new PullTimesDetector{}};
-    std::shared_ptr<base::LinearInterpolator> _tension_linear_interpolator;
+    class BurnOutMode :
+        public base::IExecutable
+    {
+    private:
+        bool _is_preparing = true;
+        int _unwinding_tick = 0;
+        double _reference_power = 0;
+        double _tension = 0;
 
-    void Prepare();
-    void Work();
+        double _starting_point_line_length = 0;
+        double _end_point_line_length = 0;
+        double _reference_line_length = 0;
 
-public:
-    BurnOutMode(std::shared_ptr<Cmd> cmd,
-                std::shared_ptr<IBurnOutMode_InfomationGetter> infos);
+        std::shared_ptr<Cmd> _cmd;
+        std::shared_ptr<IBurnOutMode_InfomationGetter> _infos;
+        std::shared_ptr<PullTimesDetector> _pull_times_detecter{new PullTimesDetector{}};
+        std::shared_ptr<base::LinearInterpolator> _tension_linear_interpolator;
 
-    void Execute();
-};
+        void Prepare();
+        void Work();
+
+    public:
+        BurnOutMode(std::shared_ptr<Cmd> cmd,
+                    std::shared_ptr<IBurnOutMode_InfomationGetter> infos);
+
+        void Execute();
+    };
+
+} // namespace body

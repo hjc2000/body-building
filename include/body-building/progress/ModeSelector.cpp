@@ -509,7 +509,8 @@ void ModeSelector::CreateBodyBuildingModeExecutable()
         }
     case Option_BodyBuildingMode::BurnOutMode:
         {
-            class Getter : public IBurnOutMode_InfomationGetter
+            class Getter :
+                public body::IBurnOutMode_InfomationGetter
             {
             public:
                 double Option_Tension_kg() override
@@ -544,7 +545,7 @@ void ModeSelector::CreateBodyBuildingModeExecutable()
             };
 
             _body_building_executable = std::shared_ptr<base::IExecutable>{
-                new BurnOutMode{
+                new body::BurnOutMode{
                     _cmd,
                     std::shared_ptr<Getter>{new Getter{}},
                 },
