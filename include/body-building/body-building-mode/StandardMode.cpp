@@ -1,7 +1,7 @@
 #include "StandardMode.h"
 
-StandardMode::StandardMode(std::shared_ptr<Cmd> cmd,
-                           std::shared_ptr<IStandardMode_InformationGetter> infos)
+body::StandardMode::StandardMode(std::shared_ptr<Cmd> cmd,
+                                 std::shared_ptr<IStandardMode_InformationGetter> infos)
 {
     _cmd = cmd;
     _infos = infos;
@@ -17,7 +17,7 @@ StandardMode::StandardMode(std::shared_ptr<Cmd> cmd,
     };
 }
 
-void StandardMode::Execute()
+void body::StandardMode::Execute()
 {
     double winding_speed = _infos->Option_WindingSpeed_rpm();
     _current_tension_kg = _infos->Option_Tension_kg();
@@ -38,7 +38,7 @@ void StandardMode::Execute()
 void Test_StandardMode()
 {
     class Getter :
-        public IStandardMode_InformationGetter
+        public body::IStandardMode_InformationGetter
     {
     public:
         virtual double Option_Tension_kg() override
@@ -59,7 +59,7 @@ void Test_StandardMode()
 
     std::shared_ptr<Cmd> cmd{new Cmd{}};
     std::shared_ptr<Getter> getter{new Getter{}};
-    StandardMode mode{cmd, getter};
+    body::StandardMode mode{cmd, getter};
     for (int i = 0; i < 200; i++)
     {
         mode.Execute();

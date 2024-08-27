@@ -25,7 +25,7 @@ void ModeSelector::CreateBodyBuildingModeExecutable()
     case Option_BodyBuildingMode::Standard:
         {
             class InfoGetter :
-                public IStandardMode_InformationGetter
+                public body::IStandardMode_InformationGetter
             {
             public:
                 double Option_Tension_kg() override
@@ -45,7 +45,7 @@ void ModeSelector::CreateBodyBuildingModeExecutable()
             };
 
             _body_building_executable = std::shared_ptr<base::IExecutable>{
-                new StandardMode{
+                new body::StandardMode{
                     _cmd,
                     std::shared_ptr<InfoGetter>{new InfoGetter{}},
                 },
