@@ -46,7 +46,7 @@ void body::BurnOutMode::Work()
         }
         else
         {
-            power = _reference_power;
+            power = _tension * pull_length / _unwinding_tick;
         }
 
         double power_grow_ratio = (power - _reference_power) / _reference_power;
